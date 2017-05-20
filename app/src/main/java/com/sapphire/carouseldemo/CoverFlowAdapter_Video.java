@@ -12,16 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CoverFlowAdapter extends BaseAdapter {
+public class CoverFlowAdapter_Video extends BaseAdapter {
 
     private ArrayList<Game> data;
     private AppCompatActivity activity;
 
-    public CoverFlowAdapter(AppCompatActivity context, ArrayList<Game> objects) {
+    public CoverFlowAdapter_Video(AppCompatActivity context, ArrayList<Game> objects) {
         this.activity = context;
         this.data = objects;
     }
@@ -48,14 +49,12 @@ public class CoverFlowAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.item_flow_view1, null, false);
-
+            convertView = inflater.inflate(R.layout.item_video_thumbnail, null, false);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
         viewHolder.gameImage.setImageResource(data.get(position).getImageSource());
         viewHolder.gameName.setText(data.get(position).getName());
 
@@ -66,19 +65,16 @@ public class CoverFlowAdapter extends BaseAdapter {
 
     private View.OnClickListener onClickListener(final int position) {
         return new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 final Dialog dialog = new Dialog(activity);
                 dialog.setContentView(R.layout.dialog_game_info);
                 dialog.setCancelable(true); // dimiss when touching outside
                 dialog.setTitle("Game Details");
-
                 TextView text = (TextView) dialog.findViewById(R.id.name);
                 text.setText(getItem(position).getName());
                 ImageView image = (ImageView) dialog.findViewById(R.id.image);
                 image.setImageResource(getItem(position).getImageSource());
-
                 dialog.show();
             }
         };
@@ -88,10 +84,12 @@ public class CoverFlowAdapter extends BaseAdapter {
     private static class ViewHolder {
         private TextView gameName;
         private ImageView gameImage;
+        private LinearLayout useraction_LL;
 
         public ViewHolder(View v) {
             gameImage = (ImageView) v.findViewById(R.id.image);
             gameName = (TextView) v.findViewById(R.id.name);
+            useraction_LL = (LinearLayout)v.findViewById(R.id.userreaction_LL);
         }
     }
 }

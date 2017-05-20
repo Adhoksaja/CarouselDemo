@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CarouselDemo</string>
+    <string name="API_KEY_YouTube">AIzaSyAv1fWV6v6pZptEYVVaEg07HUU41VQslWQ</string>
 </resources>
